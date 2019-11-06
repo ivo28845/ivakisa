@@ -1,0 +1,108 @@
+#include <iostream>
+#include <cstring>
+#include <stdlib.h>
+using namespace std;
+
+
+string get = " ";
+string player1="";
+string player2="";
+int x=0;
+int y=0;
+
+string array[5][5]{{"1","|","2","|","3"},
+                        {"-"," ","-"," ","-"},
+                        {"4","|","5","|","6"},
+                        {"-"," ","-"," ","-"},
+                        {"7","|","8","|","9"}};
+                        
+void check()
+{
+    while(x<6)
+    {  
+        if (x==5)
+        {
+            if(y<5)
+            {
+                cout<<endl;
+                x=0;
+                y++;
+                    if(y==5)
+                    {
+                        break;   
+                    }
+            }
+        }else 
+        { 
+            while(1)
+            {
+                string n=array[y][x];
+               if(get == n)
+               {
+                   cout<<"nice";
+                  break;
+               }
+               x++; 
+            }
+            
+        }
+    }
+}
+
+ void board() //prints board 
+  {
+int y=0;
+int x=0;
+    system("CLS");
+    while(x<6)
+    {  
+        if (x==5)
+        {
+            if(y<5)
+            {
+                cout<<endl;
+                x=0;
+                y++;
+                    if(y==5)
+                    {
+                        break;   
+                    }
+            }
+        }else {cout<<array[y][x];x++;}
+    }
+  }
+  
+  void action() //player get move
+  {
+      
+      if (x=0)
+      {
+          if (x=0)
+          {
+              Again:
+              cout<<endl<<player1<<"'s turn, select a number from the board";
+              cin>>get;
+              check();
+              x++;
+          }
+            else
+            {
+                cout<<endl<<player2<<"'s turn, select a number from the board";
+              cin>>get;
+              check();
+              x=0;
+            }
+          
+      }
+  }
+ int main()
+{
+ 
+while(1)
+{
+    board();
+    action();
+    
+}
+    return  0;
+}
