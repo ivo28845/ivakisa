@@ -7,6 +7,7 @@ using namespace std;
 string get = " ";
 string player1="";
 string player2="";
+int turn= 0;
 int x=0;
 int y=0;
 
@@ -16,6 +17,16 @@ string array[5][5]{{"1","|","2","|","3"},
                         {"-"," ","-"," ","-"},
                         {"7","|","8","|","9"}};
                         
+
+void getname()
+{
+    cout<<"What's your name, Player 1?"<<endl;
+    cin>>player1;
+    system("clear");
+    cout<<"What's your name, Player 2?"<<endl;
+    cin>>player2;
+}
+
 void check()
 {
     while(x<6)
@@ -53,7 +64,7 @@ void check()
   {
 int y=0;
 int x=0;
-    system("CLS");
+    system("clear");
     while(x<6)
     {  
         if (x==5)
@@ -65,6 +76,7 @@ int x=0;
                 y++;
                     if(y==5)
                     {
+                        x=6;
                         break;   
                     }
             }
@@ -74,32 +86,29 @@ int x=0;
   
   void action() //player get move
   {
-      
-      if (x=0)
-      {
-          if (x=0)
+          if (turn==0)
           {
               Again:
               cout<<endl<<player1<<"'s turn, select a number from the board";
               cin>>get;
               check();
-              x++;
+              turn++;
           }
             else
             {
                 cout<<endl<<player2<<"'s turn, select a number from the board";
               cin>>get;
               check();
-              x=0;
+              turn = 0;
             }
-          
-      }
+      
   }
  int main()
 {
  
 while(1)
 {
+    getname();
     board();
     action();
     
