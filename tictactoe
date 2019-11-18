@@ -10,6 +10,8 @@ string player2="";
 int turn= 0;
 int x=0;
 int y=0;
+int gameon = 1;
+int invalid = 0;
 
 string array[5][5]{{"1","|","2","|","3"},
                         {"-"," ","-"," ","-"},
@@ -29,6 +31,7 @@ void getname()
 
 void check()
 {
+    invalid=0;
     while(x<6)
     {  
         if (x==5)
@@ -45,16 +48,36 @@ void check()
             }
         }else 
         { 
-            while(1)
+            int ch=0;
+            while(ch==0)
             {
                 string n=array[y][x];
+                if (get!=n)
+                {
+                    ch=1;
+                }
                if(get == n)
                {
-                  cout<<"nice";
+                  if(turn==0)
+                  {
+                    array[y][x]="x";
+                  }
+                  else
+                  {
+                      array[y][x]="o";
+                  }
                   x=6;
                   break;
                }
-               x++; 
+               
+               else
+               {
+                   system("clear");
+                   cout<<"not valid, try again"<<endl;
+                   invalid =1;
+                   x=6;
+               }
+               break;
             }
             
         }
@@ -90,32 +113,43 @@ int x=0;
           if (turn==0)
           {
               Again:
+              x=0;
+              y=0;
               cout<<endl<<player1<<"'s turn, select a number from the board"<<endl;
               cin>>get;
               check();
+              if(invalid==1)
+              {
+                  goto Again;
+              }
               turn++;
           }
             else
             {
-                cout<<endl<<player2<<"'s turn, select a number from the board"<<endl;
+              Againn:
+              x=0;
+              y=0;
+              cout<<endl<<player2<<"'s turn, select a number from the board"<<endl;
               cin>>get;
               check();
+              if (invalid==1)
+              {
+                  goto Againn;
+              }
               turn = 0;
             }
       
   }
  int main()
 {
- 
-while(true)
+  getname();
+while(gameon == 1)
 {
-    getname();
     board();
+    x=0;
+    y=0;
     action();
     system("clear");
-    cout<<"gg";
-    return 0;
-    
 }
     return  0;
 }
